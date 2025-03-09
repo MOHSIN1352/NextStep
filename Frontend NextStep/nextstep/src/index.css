@@ -1,0 +1,18 @@
+/* @tailwind base;
+@tailwind components; */
+@tailwind utilities;
+@import "tailwindcss";
+/* Corrected @font-face paths */
+@font-face {
+  font-family: "HelvitaRegular";
+  src: url("./assets/HelveticaNowDisplay-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelvitaLight";
+  src: url("./assets/HelveticaNowDisplay-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
