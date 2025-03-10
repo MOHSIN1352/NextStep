@@ -2,6 +2,32 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
+const app = express();
+
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO).then(() => {
+  console.log("Connected to MongoDB");
+})
+
+
+
+const User = require('./models/userModel');
+
+async function insert() {
+  
+  await User.create({
+    Name:'Mohsin',
+    email:'mohsinpathan1352@gmail.com',
+    Phone_no: 9265283529,
+    City: 'Gandhinagar',
+    State: 'Gujarat',
+    Gender: 'Male',
+    Date_of_Birth: 11/13/2001
+  }); 
+}
+
+insert();
 
 // Import Routes
 const youngstersRoutes = require("./routes/youngsters");
@@ -12,7 +38,7 @@ const stateRoutes = require("./routes/state");
 const instituteRoutes = require("./routes/institute");
 
 
-const app = express();
+
 
 // Middleware
 app.use(cors());
