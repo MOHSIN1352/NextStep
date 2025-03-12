@@ -1,64 +1,44 @@
 const mongoose = require("mongoose");
 
-const counterSchema = new mongoose.Schema({
-    _id: { type: String, required: true },
-    seq: { type: Number, default: 0 }
-});
-
-const Counter = mongoose.model("Counter", counterSchema);
-
 const userSchema = new mongoose.Schema({
-    User_ID: {
-        type: Number,
-        unique: true
+    User_ID: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        auto: true 
     },
-    Name: {
-        type: String,
-        required: true
+    Name: { 
+        type: String, 
+        required: true 
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
+    email: { 
+        type: String, 
+        required: true, 
+        unique: true 
     },
-    Phone_no: {
-        type: Number,
-        required: true,
-        unique: true
+    Phone_no: { 
+        type: Number, 
+        required: true, 
+        unique: true 
     },
-    City: {
-        type: String,
-        required: true
+    City: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "City", 
+        required: true 
     },
-    State: {
-        type: String,
-        required: true
+    State: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "State", 
+        required: true 
     },
-    Gender: {
-        type: String,
-        required: true,
-        enum: ["Male", "Female", "Other"]
+    Gender: { 
+        type: String, 
+        required: true, 
+        enum: ["Male", "Female", "Other"] 
     },
-    Date_of_Birth: {
-        type: Date,
-        required: true
+    Date_of_Birth: { 
+        type: Date, 
+        required: true 
     }
-}, {
-    timestamps: true
 });
 
-userSchema.pre("save", async function (next) {
-    if (!this.User_ID) {
-        const counter = await Counter.findByIdAndUpdate(
-            { _id: "user_id" },
-            { $inc: { seq: 1 } },
-            { new: true, upsert: true }
-        );
-        this.User_ID = counter.seq;
-    }
-    next();
-});
+module.exports = mongoose.model("User", userSchema);
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = User;
