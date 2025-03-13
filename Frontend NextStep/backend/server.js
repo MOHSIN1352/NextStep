@@ -1,10 +1,14 @@
+
 const express = require('express');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+
+
 const userRoutes = require('./routes/userRoutes');
 const generalRoutes = require('./routes/generalRoutes');
+
 
 
 
@@ -26,6 +30,10 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+
+
+// Middleware
+
 app.use(cors());
 
 app.use('/api/user', userRoutes);
