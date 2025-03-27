@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api"; // Update with your backend URL
+const API_URL = "http://localhost:5000/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,9 +20,9 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-console.log("login data",formData)
+    console.log("login data", formData);
     try {
-      const response =  await axios.post(`${API_URL}/user/login`, formData, {
+      const response = await axios.post(`${API_URL}/user/login`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -30,7 +30,7 @@ console.log("login data",formData)
 
       console.log("Login successful:", response.data);
       alert("Login Successful!");
-      
+
       // Store token in local storage
       localStorage.setItem("token", response.data.token);
 
@@ -41,17 +41,32 @@ console.log("login data",formData)
       setError(err.response?.data?.error || "Invalid credentials, try again.");
     }
   };
-
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-[#F5E8D0] to-[#D8BFAA] relative overflow-hidden">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-[#f5f0e3]  relative overflow-hidden">
       {/* Branding */}
-      <div className="absolute top-8 left-10 text-3xl font-bold text-[#4A3B2D] cursor-pointer" onClick={() => navigate("/")}>
+      <div
+        className="absolute top-8 left-10 text-3xl font-bold text-orange-900 cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         Next<span className="font-semibold">Step</span>
       </div>
-
+      <div>
+        <iframe
+          src="https://lottie.host/embed/4eb61a03-4a7f-4409-baf4-1ebb8fd4e3e3/L8TuJEfMz4.lottie"
+          className="absolute top-[40%] left-0"
+          width={600}
+          height={400}
+        ></iframe>
+        <iframe
+          src="https://lottie.host/embed/7c125179-f12b-4784-a8b0-e6db77832119/MfDnwXqDAe.lottie"
+          className="absolute top-[40%] right-0"
+          width={600}
+          height={400}
+        ></iframe>
+      </div>
       {/* Login Card */}
-      <div className="relative bg-white/50 backdrop-blur-lg shadow-lg rounded-3xl px-10 py-12 w-96 border border-white/30">
-        <h1 className="text-3xl font-bold text-[#4A3B2D] text-center">Login</h1>
+      <div className="relative   backdrop-blur-2xl shadow-xl rounded-3xl px-10 py-12 w-96 border border-white/30">
+        <h1 className="text-3xl font-bold text-amber-900 text-center">Login</h1>
 
         {/* Display error message */}
         {error && <p className="text-red-500 text-center mt-2">{error}</p>}
@@ -75,7 +90,10 @@ console.log("login data",formData)
 
           {/* Password Input */}
           <div className="mt-4">
-            <label htmlFor="password" className="block text-[#6D5C4F] font-medium">
+            <label
+              htmlFor="password"
+              className="block text-[#6D5C4F] font-medium"
+            >
               Password
             </label>
             <input
@@ -91,8 +109,18 @@ console.log("login data",formData)
 
           {/* Login Button */}
           <div className="mt-6 text-center">
-            <button type="submit" className="w-full py-3 bg-[#B99875] text-white font-semibold rounded-xl shadow-md hover:bg-[#8A6E50] transition duration-300">
+            <button
+              type="submit"
+              className="w-full py-3 bg-orange-900 text-white font-semibold rounded-xl shadow-md hover:bg-[#8A6E50] transition duration-300"
+            >
               Login
+            </button>
+          </div>
+
+          {/* Forgot Password Button */}
+          <div className="mt-4 text-center">
+            <button className="w-full py-3 bg-transparent text-[#B99875] font-semibold rounded-xl border border-[#B99875] shadow-md hover:bg-amber-900 hover:text-white transition duration-300">
+              Forgot Password
             </button>
           </div>
         </form>
@@ -101,7 +129,10 @@ console.log("login data",formData)
         <div className="mt-6 text-center">
           <p className="text-[#6D5C4F]">
             Don't have an account?{" "}
-            <span className="text-[#B99875] font-semibold cursor-pointer hover:underline" onClick={() => navigate("/signup")}>
+            <span
+              className="text-amber-900 font-semibold cursor-pointer hover:underline"
+              onClick={() => navigate("/signup")}
+            >
               Sign up
             </span>
           </p>
