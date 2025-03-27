@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import DemoPage from "./Page2"; //Page 2
 import Demo from "./Page4"; //page 4
 import Pagemap from "./Page3"; //page3
+import Footer from "./Footer";
 
 function Home() {
   return (

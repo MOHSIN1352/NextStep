@@ -1,6 +1,6 @@
 import React from "react";
-import map from "../assets/page4map.jpg"; // Ensure correct path
-import { Fullscreen } from "lucide-react";
+// import map from "../assets/page4map.jpg"; // Ensure correct path
+// import { Fullscreen } from "lucide-react";
 import { motion } from "motion/react";
 const Pagemap = () => {
   return (
