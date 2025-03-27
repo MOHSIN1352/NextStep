@@ -1,12 +1,13 @@
 import React from "react";
-
 import background from "../assets/background.png";
 import Navbar from "./Navbar";
-import Page3 from "./Page3";
-import Page2 from "./Page2";
+import DemoPage from "./Page2"; //Page 2
+import Demo from "./Page4"; //page 4
+import Pagemap from "./Page3"; //page3
+
 function Home() {
   return (
-    <>
+    <div className="overflow-hidden w-full">
       <div className="h-screen w-full overflow-hidden ">
         <div
           className="h-screen bg-cover bg-center backdrop-brightness-75"
@@ -31,9 +32,11 @@ function Home() {
           </div>
         </div>
       </div>
-      <Page2 />
-      <Page3 />
-    </>
+      <DemoPage />
+      <Pagemap />
+      <Demo />
+      <Footer />
+    </div>
   );
 }
 
