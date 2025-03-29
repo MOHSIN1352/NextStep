@@ -2,17 +2,14 @@ const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const employerSchema = new mongoose.Schema({
-  Employer_ID: {
-    type: Number,
-    unique: true
-  },
   Name: {
     type: String,
     required: true,
     unique: true
   },
   Location: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'City', // Reference to City collection
     required: true
   },
   Average_Salary: {
