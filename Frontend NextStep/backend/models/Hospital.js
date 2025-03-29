@@ -1,48 +1,56 @@
-const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
+const mongoose = require("mongoose");
 
-const hospitalSchema = new mongoose.Schema({
-  Hospital_ID: {
-    type: Number,
-    unique: true
+const hospitalSchema = new mongoose.Schema(
+  {
+    Name: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    Facility_Type: {
+      type: String,
+      enum: ["Hospital", "Pharmacy", "Clinic"],
+      required: true
+    },
+    Longitude: {
+      type: Number, 
+      required: true
+    },
+    Latitude: {
+      type: Number, 
+      required: true
+    },
+    Contact: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/^\d{10}$/, "Invalid phone number format"] // Enforces 10-digit phone numbers
+    },
+    Location: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    Timings: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    Rating: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 5
+    },
+    City_ID: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "City",
+      required: true,
+      index: true // Indexed for faster lookups
+    }
   },
-  Name: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  Longitude: {
-    type: String,
-    required: true
-  },
-  Latitude: {
-    type: String,
-    required: true
-  },
-  Contact: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  Location: {
-    type: String,
-    required: true
-  },
-  Timings: {
-    type: String,
-    required: true
-  },
-  Rating: {
-    type: Number,
-    required: true,
-    min: 0,
-    max: 5
-  }
-});
+  { timestamps: true } // Adds createdAt and updatedAt fields
+);
 
-// Apply auto-increment plugin for Hospital_ID
-hospitalSchema.plugin(AutoIncrement, { inc_field: "Hospital_ID", start_seq: 1 });
-
-const Hospital = mongoose.model('Hospital', hospitalSchema);
-
+const Hospital = mongoose.model("Hospital", hospitalSchema);
 module.exports = Hospital;
