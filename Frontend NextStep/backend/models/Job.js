@@ -1,37 +1,43 @@
 const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
-const jobSchema = new mongoose.Schema({
-  Job_ID: {
-    type: Number,
+const courseSchema = new mongoose.Schema({
+  Name: {
+    type: String,
+    required: true
+  },
+  Platform: {
+    type: String,
+    required: true
+  },
+  Category: {
+    type: String,
+    required: true
+  },
+  url: {
+    type: String,
+    required: true,
     unique: true
   },
-  Employer_ID: {
-    type: mongoose.Schema.Types.Number, // Reference to Employer_ID (should also be auto-incremented)
-    ref: "Employer",
+  duration: {
+    type: String, // Consider using Number if duration is in hours/days
     required: true
   },
-  Title: {
-    type: String,
+  certification: {
+    type: Boolean,
     required: true
   },
-  Industry_Type: {
-    type: String,
-    required: true
-  },
-  Salary: {
+  rating: {
     type: Number,
     required: true,
-    min: 0 
-  },
-  Location: {
-    type: String,
-    required: true
+    min: 0,
+    max: 5
   }
 });
 
-jobSchema.plugin(AutoIncrement, { inc_field: "Job_ID", start_seq: 1 });
+// Apply auto-increment plugin for Course_ID
+courseSchema.plugin(AutoIncrement, { inc_field: "Course_ID", start_seq: 1 });
 
-const Job = mongoose.model('Job', jobSchema);
+const Course = mongoose.model('Course', courseSchema);
 
-module.exports = Job;
+module.exports = Course;
