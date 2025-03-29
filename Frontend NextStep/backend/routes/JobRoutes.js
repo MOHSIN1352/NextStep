@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  getJobs,
+  getAllJobs,
   getJobById,
   createJob,
   updateJob,
@@ -10,10 +10,12 @@ const {
 const router = express.Router();
 
 // Job routes
-router.get('/', getJobs);
+router.get('/', getAllJobs);
 router.get('/:id', getJobById);
 router.post('/', createJob);
 router.put('/:id', updateJob);
 router.delete('/:id', deleteJob);
 
 module.exports = router;
+
+
