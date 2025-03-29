@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const courseSchema = new mongoose.Schema({
-  Course_ID: {
-    type: Number,
-    unique: true
-  },
   Name: {
     type: String,
     required: true
