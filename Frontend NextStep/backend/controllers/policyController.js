@@ -1,12 +1,22 @@
-const Policy = require('../models/Policy');
+const Policy = require("../models/Policy");
 
 // ✅ Get all policies
 exports.getPolicies = async (req, res) => {
   try {
-    const policies = await Policy.find();
-    res.json(policies);
+    const { location } = req.query;
+
+    let policies;
+    if (location) {
+      policies = await Policy.find({ Region: location }).populate({
+        path: "Region", // Assuming "Region" is a reference to a "State" model
+        select: "State_Name", // Select only the state name
+      });
+    }
+
+    res.status(200).json(policies);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error("Error fetching policies:", error);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
@@ -26,7 +36,16 @@ exports.getPolicyById = async (req, res) => {
 // ✅ Create a new policy
 exports.createPolicy = async (req, res) => {
   try {
-    const { Name, Description, Region, Department, Deadline, Status, Year, documentLink } = req.body;
+    const {
+      Name,
+      Description,
+      Region,
+      Department,
+      Deadline,
+      Status,
+      Year,
+      documentLink,
+    } = req.body;
 
     const newPolicy = new Policy({
       Name,
@@ -36,7 +55,7 @@ exports.createPolicy = async (req, res) => {
       Deadline,
       Status,
       Year,
-      documentLink
+      documentLink,
     });
 
     const savedPolicy = await newPolicy.save();
@@ -49,7 +68,11 @@ exports.createPolicy = async (req, res) => {
 // ✅ Update a policy by ID
 exports.updatePolicy = async (req, res) => {
   try {
-    const updatedPolicy = await Policy.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedPolicy = await Policy.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
 
     if (!updatedPolicy) {
       return res.status(404).json({ message: "Policy not found" });

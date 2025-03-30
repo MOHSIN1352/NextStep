@@ -1,12 +1,35 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { UserCircle } from "lucide-react";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-  const handleAuthToggle = () => {
-    setIsLoggedIn(!isLoggedIn);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        // Split the JWT token to get the payload
+        const payloadBase64 = token.split(".")[1]; // Extract the payload part
+        const decodedPayload = JSON.parse(atob(payloadBase64)); // Decode and parse JSON
+
+        setUser({ id: decodedPayload.userId, email: decodedPayload.email });
+        localStorage.setItem("loggedIn", user.id); //logged in users ID is in localstorage
+      } catch (error) {
+        console.error("Invalid token", error);
+        localStorage.removeItem("token"); // Remove invalid token
+      }
+    }
+  }, []);
+
+  const handleAuthClick = () => {
+    if (user) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -34,19 +57,19 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center space-x-6">
-          {isLoggedIn ? (
-            <Link to="/profile" className="flex items-center hover:scale-105">
-              <UserCircle size={32} />
-              {/* <span className="ml-2">Profile</span> */}
-            </Link>
-          ) : (
-            <button
-              onClick={handleAuthToggle}
-              className="px-4 py-2 hover:scale-105 cursor-pointer  rounded-lg "
-            >
-              Login / Signup
-            </button>
-          )}
+          <button
+            onClick={handleAuthClick}
+            className="px-4 py-2 hover:scale-105 cursor-pointer rounded-lg"
+          >
+            {user ? (
+              <div className="flex items-center">
+                <UserCircle size={32} />
+                <span className="ml-2">{user.name}</span> {/* Show user name */}
+              </div>
+            ) : (
+              "Login / Signup"
+            )}
+          </button>
         </div>
       </div>
     </nav>

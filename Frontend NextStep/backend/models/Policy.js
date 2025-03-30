@@ -1,49 +1,42 @@
-const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
+const mongoose = require("mongoose");
 
 const policySchema = new mongoose.Schema({
-  Policy_ID: {
-    type: Number,
-    unique: true
-  },
   Name: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   Description: {
     type: String,
-    required: true
+    required: true,
   },
   Region: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId, // Reference to State collection
+    ref: "State",
+    required: true,
   },
   Department: {
     type: String,
-    required: true
+    required: true,
   },
   Deadline: {
-    type: String,  // Consider using Date type if you want proper date handling
-    required: true
+    type: String,
+    required: true,
   },
   Status: {
     type: String,
-    required: true
+    required: true,
   },
   Year: {
-    type: String,  // Consider using Number type if you want proper year validation
-    required: true
+    type: String, // or Number if you want numeric year
+    required: true,
   },
   documentLink: {
     type: String,
-    unique: true
-  }
+    unique: true,
+  },
 });
 
-// Apply auto-increment plugin for Policy_ID
-policySchema.plugin(AutoIncrement, { inc_field: "Policy_ID", start_seq: 1 });
-
-const Policy = mongoose.model('Policy', policySchema);
+const Policy = mongoose.model("Policy", policySchema);
 
 module.exports = Policy;

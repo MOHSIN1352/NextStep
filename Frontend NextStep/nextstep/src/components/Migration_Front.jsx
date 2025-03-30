@@ -1,4 +1,4 @@
-import { useState ,useEffect} from "react";
+import { useState, useEffect } from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -21,34 +21,31 @@ const JobListings = () => {
     industry: "",
     location: "",
     salaryRange: "",
-   
   });
 
   const [expandedSections, setExpandedSections] = useState({
     industries: true,
     locations: true,
     salaryRanges: true,
-   
   });
-  
+
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/jobs"); 
+        const response = await axios.get("http://localhost:5000/api/jobs");
         setJobs(response.data);
       } catch (err) {
-        console.log(Error)
+        console.log(Error);
       }
     };
 
     fetchJobs();
   }, []);
 
-
+  console.log(jobs);
   // Get unique values for filters
-  const industries = [...new Set(jobs.map((job) => job.industry_type))];
-  const locations = [...new Set(jobs.map((job) => job.location))];
-
+  const industries = [...new Set(jobs.map((job) => job.Industry_Type))];
+  const locations = [...new Set(jobs.map((job) => job.Location.City_Name))];
 
   // Create salary ranges
   const salaryRanges = [
@@ -63,11 +60,12 @@ const JobListings = () => {
   const filteredJobs = jobs.filter((job) => {
     // Filter by industry
     const industryMatch =
-      jobFilters.industry === "" || job.industry_type === jobFilters.industry;
+      jobFilters.industry === "" || job.Industry_Type === jobFilters.industry;
 
     // Filter by location
     const locationMatch =
-      jobFilters.location === "" || job.location === jobFilters.location;
+      jobFilters.location === "" ||
+      job.Location.City_Name === jobFilters.location;
 
     // Filter by salary range
     let salaryMatch = true;
@@ -77,30 +75,18 @@ const JobListings = () => {
       );
       if (selectedRange) {
         salaryMatch =
-          job.salary >= selectedRange.min && job.salary < selectedRange.max;
+          job.Salary >= selectedRange.min && job.Salary < selectedRange.max;
       }
     }
-
-    // Filter by employer
-    const employerMatch =
-      jobFilters.employer === "" || job.employer_name === jobFilters.employer;
 
     // Filter by search term
     const searchMatch =
       searchTerm === "" ||
-      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.job_description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.employer_name.toLowerCase().includes(searchTerm.toLowerCase());
+      job.Title.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return (
-      industryMatch &&
-      locationMatch &&
-      salaryMatch &&
-      employerMatch &&
-      searchMatch
-    );
+    return industryMatch && locationMatch && salaryMatch && searchMatch;
   });
-console.log("filter:",filteredJobs)
+  console.log("filter:", filteredJobs);
   // Toggle section expansion
   const toggleSection = (section) => {
     setExpandedSections({
@@ -115,7 +101,6 @@ console.log("filter:",filteredJobs)
       industry: "",
       location: "",
       salaryRange: "",
-      employer: "",
     });
     setSearchTerm("");
   };
@@ -279,47 +264,6 @@ console.log("filter:",filteredJobs)
               </div>
             )}
           </div>
-
-          {/* Employers */}
-          <div className="border-t border-amber-900 py-4">
-            <div
-              className="flex justify-between items-center cursor-pointer mb-3"
-              onClick={() => toggleSection("employers")}
-            >
-              <h3 className="font-bold text-amber-900">Employers</h3>
-              {expandedSections.employers ? (
-                <ChevronDown className="h-5 w-5 text-amber-700" />
-              ) : (
-                <ChevronRight className="h-5 w-5 text-amber-700" />
-              )}
-            </div>
-            {expandedSections.employers && (
-              <div className="space-y-2">
-                {employerNames.map((employer, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between"
-                  >
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="mr-2 h-4 w-4 accent-amber-600"
-                        checked={jobFilters.employer === employer}
-                        onChange={() =>
-                          setJobFilters({
-                            ...jobFilters,
-                            employer:
-                              jobFilters.employer === employer ? "" : employer,
-                          })
-                        }
-                      />
-                      <span className="text-amber-900">{employer}</span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Main Content */}
@@ -390,10 +334,6 @@ console.log("filter:",filteredJobs)
                   <Building className="h-4 w-4 mr-2 text-amber-700" />
                   {/* <span className="font-medium">{job.employer_name}</span> */}
                 </div>
-
-                <p className="text-sm text-amber-800 mb-4 line-clamp-3">
-                  {job.job_description}
-                </p>
 
                 <div className="grid gap-2 mb-4">
                   <div className="flex items-center text-sm">

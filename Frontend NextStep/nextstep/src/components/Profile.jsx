@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
-
+import { UserContext } from "../Context/userContext";
+import { useContext } from "react";
 const ProfilePage = () => {
   const [profile, setProfile] = useState({
     name: "John Doe",
@@ -10,7 +11,7 @@ const ProfilePage = () => {
     gender: "Male",
     dob: "1995-06-15",
   });
-
+  const { user, location } = useContext(UserContext);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfile((prev) => ({

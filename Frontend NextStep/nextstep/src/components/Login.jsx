@@ -28,7 +28,7 @@ const Login = () => {
         },
       });
 
-      console.log("Login successful:", response.data);
+      console.log("Login successful:", response.data.token);
       alert("Login Successful!");
 
       // Store token in local storage

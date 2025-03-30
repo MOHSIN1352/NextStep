@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -13,129 +13,66 @@ import {
   Building,
 } from "lucide-react";
 import Navbar from "./Navbar";
-
+import axios from "axios";
 const GovernmentPolicies = () => {
   const [viewMode, setViewMode] = useState("list");
   const [searchTerm, setSearchTerm] = useState("");
+  const [policies, setPolicies] = useState([]);
   const [policyFilters, setPolicyFilters] = useState({
-    region: "",
-    department: "",
-    status: "",
-    year: "",
+    Region: "",
+    Department: "",
+    Status: "",
+    Year: "",
   });
   const [expandedSections, setExpandedSections] = useState({
-    regions: true,
-    departments: true,
-    status: true,
-    years: true,
+    Regions: true,
+    Departments: true,
+    Status: true,
+    Years: true,
   });
+  const location = "67cffe734df4cc218981e357";
 
-  // Policy data
-  const policies = [
-    {
-      id: 1,
-      name: "National Renewable Energy Policy",
-      description:
-        "Framework for increasing renewable energy adoption and reducing carbon emissions across all sectors.",
-      region: "National",
-      department: "Energy",
-      deadline: "2023-12-31",
-      status: "Active",
-      year: "2022",
-      documentLink: "https://example.gov/renewable-policy",
-    },
-    {
-      id: 2,
-      name: "Digital Infrastructure Development Plan",
-      description:
-        "Strategic plan to expand broadband access to rural communities and improve digital literacy.",
-      region: "National",
-      department: "Technology",
-      deadline: "2024-06-30",
-      status: "Active",
-      year: "2023",
-      documentLink: "https://example.gov/digital-plan",
-    },
-    {
-      id: 3,
-      name: "Urban Housing Affordability Initiative",
-      description:
-        "Program to increase affordable housing units in metropolitan areas through tax incentives and zoning reforms.",
-      region: "Urban",
-      department: "Housing",
-      deadline: "2023-09-15",
-      status: "Active",
-      year: "2022",
-      documentLink: "https://example.gov/housing-initiative",
-    },
-    {
-      id: 4,
-      name: "Agricultural Subsidy Reform",
-      description:
-        "Restructuring of agricultural subsidies to promote sustainable farming practices and support small-scale farmers.",
-      region: "Rural",
-      department: "Agriculture",
-      deadline: "2023-11-01",
-      status: "Pending Review",
-      year: "2023",
-      documentLink: "https://example.gov/ag-reform",
-    },
-    {
-      id: 5,
-      name: "Public Health Emergency Response Framework",
-      description:
-        "Comprehensive guidelines for coordinating federal, state, and local responses to public health emergencies.",
-      region: "National",
-      department: "Health",
-      deadline: "2024-03-15",
-      status: "Draft",
-      year: "2023",
-      documentLink: "https://example.gov/health-framework",
-    },
-    {
-      id: 6,
-      name: "Small Business Tax Relief Program",
-      description:
-        "Tax incentives and simplified filing procedures for small businesses affected by economic downturns.",
-      region: "National",
-      department: "Finance",
-      deadline: "2023-10-15",
-      status: "Expired",
-      year: "2021",
-      documentLink: "https://example.gov/tax-relief",
-    },
-    {
-      id: 7,
-      name: "Rural Infrastructure Development Grant",
-      description:
-        "Funding for critical infrastructure projects in rural communities, including roads, bridges, and water systems.",
-      region: "Rural",
-      department: "Infrastructure",
-      deadline: "2024-01-31",
-      status: "Active",
-      year: "2023",
-      documentLink: "https://example.gov/rural-infrastructure",
-    },
-  ];
+  useEffect(() => {
+    const fetchPolicies = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/policies`, {
+          params: { location }, // ✅ Pass location as a query parameter
+        });
+        setPolicies(response.data);
+      } catch (err) {
+        console.log("Error fetching policies:", err);
+      }
+    };
+
+    fetchPolicies();
+  }, [location]); // ✅ Re-run when location changes
+
+  console.log(policies);
 
   // Get unique values for filters
-  const regions = [...new Set(policies.map((policy) => policy.region))];
-  const departments = [...new Set(policies.map((policy) => policy.department))];
-  const statuses = [...new Set(policies.map((policy) => policy.status))];
-  const years = [...new Set(policies.map((policy) => policy.year))];
+  const Regions = [
+    ...new Set(policies.map((policy) => policy.Region.State_Name)),
+  ];
+  const Departments = [...new Set(policies.map((policy) => policy.Department))];
+  const Statuses = [...new Set(policies.map((policy) => policy.Status))];
+  const Years = [...new Set(policies.map((policy) => policy.Year))];
 
   // Filter functions
   const filteredPolicies = policies.filter((policy) => {
+    const search = searchTerm.toLowerCase().trim(); // Ensure safe string comparison
+
     return (
-      (policyFilters.region === "" || policy.region === policyFilters.region) &&
-      (policyFilters.department === "" ||
-        policy.department === policyFilters.department) &&
-      (policyFilters.status === "" || policy.status === policyFilters.status) &&
-      (policyFilters.year === "" || policy.year === policyFilters.year) &&
-      (searchTerm === "" ||
-        policy.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        policy.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        policy.department.toLowerCase().includes(searchTerm.toLowerCase()))
+      (policyFilters.Region === "" ||
+        policy.Region.State_Name === policyFilters.Region) &&
+      (policyFilters.Department === "" ||
+        policy.Department === policyFilters.Department) &&
+      (policyFilters.Status === "" || policy.Status === policyFilters.Status) &&
+      (policyFilters.Year === "" || policy.Year === policyFilters.Year) &&
+      (search === "" ||
+        (policy.Name && policy.Name.toLowerCase().includes(search)) ||
+        (policy.Description &&
+          policy.Description.toLowerCase().includes(search)) ||
+        (policy.Department && policy.Department.toLowerCase().includes(search)))
     );
   });
 
@@ -150,36 +87,33 @@ const GovernmentPolicies = () => {
   // Clear filters
   const clearFilters = () => {
     setPolicyFilters({
-      region: "",
-      department: "",
-      status: "",
-      year: "",
+      Region: "",
+      Department: "",
+      Status: "",
+      Year: "",
     });
     setSearchTerm("");
   };
 
-  // Format date for display
   const formatDate = (dateString) => {
+    if (!dateString) return "No deadline"; // Handle empty or undefined values
+
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
+
+    if (isNaN(date.getTime())) {
+      return "Invalid Date"; // Handle incorrect date formats
+    }
+
+    return new Intl.DateTimeFormat("en-IN", {
+      Year: "numeric",
       month: "long",
       day: "numeric",
     }).format(date);
   };
 
-  // Calculate days remaining until deadline
-  const getDaysRemaining = (deadlineString) => {
-    const today = new Date();
-    const deadline = new Date(deadlineString);
-    const diffTime = deadline - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  };
-
-  // Get status color
-  const getStatusColor = (status) => {
-    switch (status) {
+  // Get Status color
+  const getStatusColor = (Status) => {
+    switch (Status) {
       case "Active":
         return "bg-green-100 text-green-800 border-green-300";
       case "Pending Review":
@@ -190,21 +124,6 @@ const GovernmentPolicies = () => {
         return "bg-gray-100 text-gray-800 border-gray-300";
       default:
         return "bg-gray-100 text-gray-800 border-gray-300";
-    }
-  };
-
-  // Get urgency indicator based on days remaining
-  const getUrgencyIndicator = (deadline) => {
-    const daysRemaining = getDaysRemaining(deadline);
-
-    if (daysRemaining < 0) {
-      return { color: "text-gray-400", text: "Expired" };
-    } else if (daysRemaining <= 30) {
-      return { color: "text-red-600", text: `${daysRemaining} days left` };
-    } else if (daysRemaining <= 90) {
-      return { color: "text-amber-600", text: `${daysRemaining} days left` };
-    } else {
-      return { color: "text-green-600", text: `${daysRemaining} days left` };
     }
   };
 
@@ -241,70 +160,29 @@ const GovernmentPolicies = () => {
                 type="text"
                 placeholder="Search policies..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => setSearchTerm(e.target.value || "")}
                 className="w-full p-2 pl-8 border border-amber-900 rounded bg-white"
               />
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-amber-900" />
             </div>
           </div>
 
-          {/* Regions */}
-          <div className="border-t border-amber-900 py-4">
-            <div
-              className="flex justify-between items-center cursor-pointer mb-3"
-              onClick={() => toggleSection("regions")}
-            >
-              <h3 className="font-bold text-amber-900">Regions</h3>
-              {expandedSections.regions ? (
-                <ChevronDown className="h-5 w-5 text-amber-700" />
-              ) : (
-                <ChevronRight className="h-5 w-5 text-amber-700" />
-              )}
-            </div>
-            {expandedSections.regions && (
-              <div className="space-y-2">
-                {regions.map((region, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between"
-                  >
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="mr-2 h-4 w-4 accent-amber-600"
-                        checked={policyFilters.region === region}
-                        onChange={() =>
-                          setPolicyFilters({
-                            ...policyFilters,
-                            region:
-                              policyFilters.region === region ? "" : region,
-                          })
-                        }
-                      />
-                      <span className="text-amber-900">{region}</span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
           {/* Departments */}
           <div className="border-t border-amber-900 py-4">
             <div
               className="flex justify-between items-center cursor-pointer mb-3"
-              onClick={() => toggleSection("departments")}
+              onClick={() => toggleSection("Departments")}
             >
               <h3 className="font-bold text-amber-900">Departments</h3>
-              {expandedSections.departments ? (
+              {expandedSections.Departments ? (
                 <ChevronDown className="h-5 w-5 text-amber-700" />
               ) : (
                 <ChevronRight className="h-5 w-5 text-amber-700" />
               )}
             </div>
-            {expandedSections.departments && (
+            {expandedSections.Departments && (
               <div className="space-y-2">
-                {departments.map((department, index) => (
+                {Departments.map((Department, index) => (
                   <div
                     key={index}
                     className="flex items-center justify-between"
@@ -313,18 +191,18 @@ const GovernmentPolicies = () => {
                       <input
                         type="checkbox"
                         className="mr-2 h-4 w-4 accent-amber-600"
-                        checked={policyFilters.department === department}
+                        checked={policyFilters.Department === Department}
                         onChange={() =>
                           setPolicyFilters({
                             ...policyFilters,
-                            department:
-                              policyFilters.department === department
+                            Department:
+                              policyFilters.Department === Department
                                 ? ""
-                                : department,
+                                : Department,
                           })
                         }
                       />
-                      <span className="text-amber-900">{department}</span>
+                      <span className="text-amber-900">{Department}</span>
                     </label>
                   </div>
                 ))}
@@ -336,18 +214,18 @@ const GovernmentPolicies = () => {
           <div className="border-t border-amber-900 py-4">
             <div
               className="flex justify-between items-center cursor-pointer mb-3"
-              onClick={() => toggleSection("status")}
+              onClick={() => toggleSection("Status")}
             >
               <h3 className="font-bold text-amber-900">Status</h3>
-              {expandedSections.status ? (
+              {expandedSections.Status ? (
                 <ChevronDown className="h-5 w-5 text-amber-700" />
               ) : (
                 <ChevronRight className="h-5 w-5 text-amber-700" />
               )}
             </div>
-            {expandedSections.status && (
+            {expandedSections.Status && (
               <div className="space-y-2">
-                {statuses.map((status, index) => (
+                {Statuses.map((Status, index) => (
                   <div
                     key={index}
                     className="flex items-center justify-between"
@@ -356,16 +234,16 @@ const GovernmentPolicies = () => {
                       <input
                         type="checkbox"
                         className="mr-2 h-4 w-4 accent-amber-600"
-                        checked={policyFilters.status === status}
+                        checked={policyFilters.Status === Status}
                         onChange={() =>
                           setPolicyFilters({
                             ...policyFilters,
-                            status:
-                              policyFilters.status === status ? "" : status,
+                            Status:
+                              policyFilters.Status === Status ? "" : Status,
                           })
                         }
                       />
-                      <span className="text-amber-900">{status}</span>
+                      <span className="text-amber-900">{Status}</span>
                     </label>
                   </div>
                 ))}
@@ -377,18 +255,18 @@ const GovernmentPolicies = () => {
           <div className="border-t border-amber-900 py-4">
             <div
               className="flex justify-between items-center cursor-pointer mb-3"
-              onClick={() => toggleSection("years")}
+              onClick={() => toggleSection("Years")}
             >
               <h3 className="font-bold text-amber-900">Year Published</h3>
-              {expandedSections.years ? (
+              {expandedSections.Years ? (
                 <ChevronDown className="h-5 w-5 text-amber-700" />
               ) : (
                 <ChevronRight className="h-5 w-5 text-amber-700" />
               )}
             </div>
-            {expandedSections.years && (
+            {expandedSections.Years && (
               <div className="space-y-2">
-                {years.map((year, index) => (
+                {Years.map((Year, index) => (
                   <div
                     key={index}
                     className="flex items-center justify-between"
@@ -397,15 +275,15 @@ const GovernmentPolicies = () => {
                       <input
                         type="checkbox"
                         className="mr-2 h-4 w-4 accent-amber-600"
-                        checked={policyFilters.year === year}
+                        checked={policyFilters.Year === Year}
                         onChange={() =>
                           setPolicyFilters({
                             ...policyFilters,
-                            year: policyFilters.year === year ? "" : year,
+                            Year: policyFilters.Year === Year ? "" : Year,
                           })
                         }
                       />
-                      <span className="text-amber-900">{year}</span>
+                      <span className="text-amber-900">{Year}</span>
                     </label>
                   </div>
                 ))}
@@ -464,8 +342,6 @@ const GovernmentPolicies = () => {
             }
           >
             {filteredPolicies.map((policy) => {
-              const urgency = getUrgencyIndicator(policy.deadline);
-
               return (
                 <div
                   key={policy.id}
@@ -475,38 +351,38 @@ const GovernmentPolicies = () => {
                     <div className="flex items-center gap-2">
                       <span
                         className={`px-2 py-1 text-xs rounded border ${getStatusColor(
-                          policy.status
+                          policy.Status
                         )}`}
                       >
-                        {policy.status}
+                        {policy.Status}
                       </span>
                       <span className="text-sm text-amber-700">
-                        {policy.year}
+                        {policy.Year}
                       </span>
                     </div>
-                    <span className={`text-sm font-medium ${urgency.color}`}>
-                      {urgency.text}
+                    <span className={`text-sm font-medium text-red-600`}>
+                      {policy.Deadline}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold mb-3">{policy.name}</h3>
+                  <h3 className="text-xl font-bold mb-3">{policy.Name}</h3>
 
                   <p className="text-sm text-amber-800 mb-4 line-clamp-3">
-                    {policy.description}
+                    {policy.Description}
                   </p>
 
                   <div className="grid gap-2 mb-4">
                     <div className="flex items-center text-sm">
                       <MapPin className="h-4 w-4 mr-2 text-amber-700" />
-                      <span>Region: {policy.region}</span>
+                      <span>Region: {policy.Region.State_Name}</span>
                     </div>
                     <div className="flex items-center text-sm">
                       <Building className="h-4 w-4 mr-2 text-amber-700" />
-                      <span>Department: {policy.department}</span>
+                      <span>Department: {policy.Department}</span>
                     </div>
                     <div className="flex items-center text-sm">
                       <Calendar className="h-4 w-4 mr-2 text-amber-700" />
-                      <span>Deadline: {formatDate(policy.deadline)}</span>
+                      <span>Deadline: {formatDate(policy.Deadline)}</span>
                     </div>
                   </div>
 

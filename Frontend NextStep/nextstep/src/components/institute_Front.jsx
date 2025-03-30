@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, ChevronRight, Grid, List, Search } from "lucide-react";
 import Navbar from "./Navbar";
+import axios from "axios";
 
 const Institues = () => {
   const [view, setView] = useState("courses");
   const [viewMode, setViewMode] = useState("list");
   const [searchTerm, setSearchTerm] = useState("");
+  const [courses, setcourses] = useState([]);
   const [courseFilters, setCourseFilters] = useState({
     category: "",
     platform: "",
@@ -27,97 +29,25 @@ const Institues = () => {
   });
 
   // Course data
-  const courses = [
-    {
-      id: 1,
-      name: "A Gentle Introduction to Programming Using Python",
-      platform: "MIT OpenCourseWare",
-      category: "Computer Science",
-      url: "https://ocw.mit.edu/courses/6-189/",
-      duration: "10 weeks",
-      certification: true,
-      rating: 4.8,
-    },
-    {
-      id: 2,
-      name: "Management in Engineering",
-      platform: "MIT OpenCourseWare",
-      category: "Business",
-      url: "https://ocw.mit.edu/courses/2-96/",
-      duration: "8 weeks",
-      fees: 0.0,
-      certification: false,
-      rating: 4.5,
-    },
-    {
-      id: 3,
-      name: "Computer System Engineering",
-      platform: "MIT OpenCourseWare",
-      category: "Computer Science",
-      url: "https://ocw.mit.edu/courses/6-033/",
-      duration: "12 weeks",
-      fees: 0.0,
-      certification: true,
-      rating: 4.7,
-    },
-    {
-      id: 4,
-      name: "Introduction to Data Science",
-      platform: "Coursera",
-      category: "Data Science",
-      url: "https://coursera.org/data-science",
-      duration: "6 weeks",
-      fees: 49.99,
-      certification: true,
-      rating: 4.6,
-    },
-    {
-      id: 5,
-      name: "Financial Management",
-      platform: "edX",
-      category: "Business",
-      url: "https://edx.org/financial-management",
-      duration: "5 weeks",
-      fees: 99.0,
-      certification: true,
-      rating: 4.3,
-    },
-  ];
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/courses");
+        setcourses(response.data);
+      } catch (err) {
+        console.log("Error fetching data:", err);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(courses);
   // Institute data
-  const institutes = [
-    {
-      id: 1,
-      name: "MIT",
-      address: "Cambridge, Massachusetts",
-      websiteLink: "https://mit.edu",
-      accreditation: "NECHE",
-      establishmentYear: 1861,
-      degreesOffered: ["B.Tech", "M.Tech", "PhD"],
-    },
-    {
-      id: 2,
-      name: "Stanford University",
-      address: "Stanford, California",
-      websiteLink: "https://stanford.edu",
-      accreditation: "WSCUC",
-      establishmentYear: 1885,
-      degreesOffered: ["BS", "MS", "PhD"],
-    },
-    {
-      id: 3,
-      name: "Harvard University",
-      address: "Cambridge, Massachusetts",
-      websiteLink: "https://harvard.edu",
-      accreditation: "NECHE",
-      establishmentYear: 1636,
-      degreesOffered: ["BA", "MA", "PhD", "MD", "JD"],
-    },
-  ];
+  const institutes = [];
 
   // Get unique values for filters
-  const categories = [...new Set(courses.map((course) => course.category))];
-  const platforms = [...new Set(courses.map((course) => course.platform))];
+  const categories = [...new Set(courses.map((course) => course.Category))];
+  const platforms = [...new Set(courses.map((course) => course.Platform))];
   const locations = [
     ...new Set(
       institutes.map((institute) => {
@@ -137,16 +67,16 @@ const Institues = () => {
   const filteredCourses = courses.filter((course) => {
     return (
       (courseFilters.category === "" ||
-        course.category === courseFilters.category) &&
+        course.Category === courseFilters.category) &&
       (courseFilters.platform === "" ||
-        course.platform === courseFilters.platform) &&
+        course.Platform === courseFilters.platform) &&
       (courseFilters.certification === null ||
         course.certification === courseFilters.certification) &&
       (courseFilters.minRating === 0 ||
         course.rating >= courseFilters.minRating) &&
       (searchTerm === "" ||
-        course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        course.category.toLowerCase().includes(searchTerm.toLowerCase()))
+        course.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        course.Category.toLowerCase().includes(searchTerm.toLowerCase()))
     );
   });
 
@@ -252,7 +182,7 @@ const Institues = () => {
       );
     }
   };
-
+  console.log(filteredCourses);
   return (
     <div className="min-h-screen bg-[#f6f6ef]">
       <Navbar />
@@ -633,18 +563,7 @@ const Institues = () => {
                   : filteredInstitutes.length}{" "}
                 results
               </span>
-              <div className="flex items-center">
-                <span className="mr-2 text-sm text-amber-800">Sort by</span>
-                <select className="border border-amber-200 rounded p-1 text-sm bg-white text-amber-900">
-                  <option>Relevance</option>
-                  <option>Name (A-Z)</option>
-                  {view === "courses" ? (
-                    <option>Rating (High-Low)</option>
-                  ) : (
-                    <option>Establishment Year</option>
-                  )}
-                </select>
-              </div>
+
               <div className="flex border border-amber-200 rounded bg-white">
                 <button
                   className={`p-1 ${
@@ -675,18 +594,25 @@ const Institues = () => {
             {view === "courses"
               ? filteredCourses.map((course) => (
                   <div
-                    key={course.id}
+                    key={course._id}
                     className="bg-[#f6f6ef] text-amber-900 drop-shadow-xl  border  rounded-lg p-6 hover:shadow-lg transition-shadow"
                   >
                     <div className=" font-medium mb-2">
-                      {course.category} | {course.platform}
+                      {course.Category} | {course.Platform}
                     </div>
-                    <h3 className="text-xl font-bold  mb-3">{course.name}</h3>
+                    <h3 className="text-xl font-bold  mb-3">{course.Name}</h3>
                     <div className="grid gap-2  mb-4">
-                      <div className="text-sm">Duration: {course.duration}</div>
-                      <div className="text-sm">
-                        Certification: {course.certification ? "Yes" : "No"}
-                      </div>
+                      <span>
+                        <span className="text-sm">
+                          Duration: {course.duration}{" "}
+                        </span>
+                        {course.certification && (
+                          <span className="ml-10 text-sm text-green-700 rounded-full bg-green-200 py-1 px-2">
+                            Certification
+                          </span>
+                        )}
+                      </span>
+
                       <div className="text-sm">Rating: {course.rating} ⭐</div>
                     </div>
                     <a
