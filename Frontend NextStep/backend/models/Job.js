@@ -27,6 +27,10 @@ const jobSchema = new mongoose.Schema({
     ref: "City",
     required: true,
   },
+  Apply_Link: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Job", jobSchema);

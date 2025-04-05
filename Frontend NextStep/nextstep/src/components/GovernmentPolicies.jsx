@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../Context/UserContext"; // Import UserContext
 import {
   ChevronDown,
   ChevronRight,
@@ -14,7 +15,9 @@ import {
 } from "lucide-react";
 import Navbar from "./Navbar";
 import axios from "axios";
+
 const GovernmentPolicies = () => {
+  const { userData } = useContext(UserContext);
   const [viewMode, setViewMode] = useState("list");
   const [searchTerm, setSearchTerm] = useState("");
   const [policies, setPolicies] = useState([]);
@@ -30,13 +33,14 @@ const GovernmentPolicies = () => {
     Status: true,
     Years: true,
   });
-  const location = "67cffe734df4cc218981e357";
+
+  const location = userData.State || "";
 
   useEffect(() => {
     const fetchPolicies = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/policies`, {
-          params: { location }, // ✅ Pass location as a query parameter
+          params: { location }, // Pass location as a query parameter
         });
         setPolicies(response.data);
       } catch (err) {
@@ -44,10 +48,10 @@ const GovernmentPolicies = () => {
       }
     };
 
-    fetchPolicies();
-  }, [location]); // ✅ Re-run when location changes
-
-  console.log(policies);
+    if (location) {
+      fetchPolicies();
+    }
+  }, [location]); // Re-run when location changes
 
   // Get unique values for filters
   const Regions = [

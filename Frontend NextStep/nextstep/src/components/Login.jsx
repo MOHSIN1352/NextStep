@@ -1,44 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
-const API_URL = "http://localhost:5000/api";
-
+import { UserContext } from "../Context/UserContext";
 const Login = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { logIn } = useContext(UserContext);
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleLogin = async (e) => {
+    console.log("Login button clicked");
     e.preventDefault();
-    setError("");
-    console.log("login data", formData);
+
     try {
-      const response = await axios.post(`${API_URL}/user/login`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log("Login successful:", response.data.token);
-      alert("Login Successful!");
-
-      // Store token in local storage
-      localStorage.setItem("token", response.data.token);
-
-      // Redirect to dashboard or home page
-      navigate("/governmentPolicies");
+      await logIn(email, password);
+      setError("");
+      navigate("/jobListings"); // Redirect on success
     } catch (err) {
-      console.error("Login error:", err.response?.data || err.message);
-      setError(err.response?.data?.error || "Invalid credentials, try again.");
+      setError("Invalid login credentials");
     }
   };
   return (
@@ -81,8 +60,8 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full p-3 mt-2 rounded-xl bg-white/60 border border-gray-300 text-[#4A3B2D] focus:ring-2 focus:ring-[#B99875] focus:outline-none"
               required
             />
@@ -100,8 +79,8 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full p-3 mt-2 rounded-xl bg-white/60 border border-gray-300 text-[#4A3B2D] focus:ring-2 focus:ring-[#B99875] focus:outline-none"
               required
             />

@@ -1,37 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserCircle } from "lucide-react";
-
+import { UserContext } from "../Context/UserContext";
 const Navbar = () => {
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const { isLoggedIn, logout } = useContext(UserContext);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        // Split the JWT token to get the payload
-        const payloadBase64 = token.split(".")[1]; // Extract the payload part
-        const decodedPayload = JSON.parse(atob(payloadBase64)); // Decode and parse JSON
-
-        setUser({ id: decodedPayload.userId, email: decodedPayload.email });
-        localStorage.setItem("loggedIn", user.id); //logged in users ID is in localstorage
-      } catch (error) {
-        console.error("Invalid token", error);
-        localStorage.removeItem("token"); // Remove invalid token
-      }
-    }
-  }, []);
-
-  const handleAuthClick = () => {
-    if (user) {
-      navigate("/profile");
-    } else {
-      navigate("/login");
-    }
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
-
   return (
     <nav className="text-orange-900">
       <div className="w-full px-10 py-4 flex justify-between items-center">
@@ -54,22 +32,32 @@ const Navbar = () => {
           <Link to="/jobListings" className="hover:scale-105">
             Jobs
           </Link>
+          <Link to="/employers" className="hover:scale-105">
+            Employers
+          </Link>
         </div>
 
         <div className="flex items-center space-x-6">
-          <button
-            onClick={handleAuthClick}
-            className="px-4 py-2 hover:scale-105 cursor-pointer rounded-lg"
-          >
-            {user ? (
-              <div className="flex items-center">
+          {isLoggedIn ? (
+            <div className="flex items-center">
+              <Link to="/profile" className="hover:scale-105">
                 <UserCircle size={32} />
-                <span className="ml-2">{user.name}</span> {/* Show user name */}
-              </div>
-            ) : (
-              "Login / Signup"
-            )}
-          </button>
+              </Link>
+              <button
+                className="px-4 py-2 hover:scale-105 cursor-pointer rounded-lg"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button
+              className="px-4 py-2 hover:scale-105 cursor-pointer rounded-lg"
+              onClick={() => navigate("/login")}
+            >
+              LogIn
+            </button>
+          )}
         </div>
       </div>
     </nav>

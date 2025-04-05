@@ -20,13 +20,13 @@ const JobListings = () => {
   const [jobFilters, setJobFilters] = useState({
     industry: "",
     location: "",
-    salaryRange: "",
+    company: "",
   });
 
   const [expandedSections, setExpandedSections] = useState({
     industries: true,
     locations: true,
-    salaryRanges: true,
+    companies: true,
   });
 
   useEffect(() => {
@@ -42,19 +42,10 @@ const JobListings = () => {
     fetchJobs();
   }, []);
 
-  console.log(jobs);
   // Get unique values for filters
   const industries = [...new Set(jobs.map((job) => job.Industry_Type))];
   const locations = [...new Set(jobs.map((job) => job.Location.City_Name))];
-
-  // Create salary ranges
-  const salaryRanges = [
-    { label: "Under $80,000", min: 0, max: 80000 },
-    { label: "$80,000 - $100,000", min: 80000, max: 100000 },
-    { label: "$100,000 - $120,000", min: 100000, max: 120000 },
-    { label: "$120,000 - $140,000", min: 120000, max: 140000 },
-    { label: "$140,000+", min: 140000, max: Number.POSITIVE_INFINITY },
-  ];
+  const companies = [...new Set(jobs.map((job) => job.Company_Name))]; // Get unique companies
 
   // Filter functions
   const filteredJobs = jobs.filter((job) => {
@@ -67,26 +58,18 @@ const JobListings = () => {
       jobFilters.location === "" ||
       job.Location.City_Name === jobFilters.location;
 
-    // Filter by salary range
-    let salaryMatch = true;
-    if (jobFilters.salaryRange !== "") {
-      const selectedRange = salaryRanges.find(
-        (range) => range.label === jobFilters.salaryRange
-      );
-      if (selectedRange) {
-        salaryMatch =
-          job.Salary >= selectedRange.min && job.Salary < selectedRange.max;
-      }
-    }
+    // Filter by company
+    const companyMatch =
+      jobFilters.company === "" || job.Company_Name === jobFilters.company;
 
     // Filter by search term
     const searchMatch =
       searchTerm === "" ||
       job.Title.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return industryMatch && locationMatch && salaryMatch && searchMatch;
+    return industryMatch && locationMatch && companyMatch && searchMatch;
   });
-  console.log("filter:", filteredJobs);
+
   // Toggle section expansion
   const toggleSection = (section) => {
     setExpandedSections({
@@ -100,18 +83,9 @@ const JobListings = () => {
     setJobFilters({
       industry: "",
       location: "",
-      salaryRange: "",
+      company: "",
     });
     setSearchTerm("");
-  };
-
-  // Format salary
-  const formatSalary = (salary) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-    }).format(salary);
   };
 
   // Get active filters count
@@ -154,7 +128,7 @@ const JobListings = () => {
               )}
             </div>
             {expandedSections.industries && (
-              <div className="space-y-2">
+              <div className="space-y-2 max-h-40 overflow-y-auto">
                 {industries.map((industry, index) => (
                   <div
                     key={index}
@@ -195,7 +169,7 @@ const JobListings = () => {
               )}
             </div>
             {expandedSections.locations && (
-              <div className="space-y-2">
+              <div className="space-y-2 max-h-60 overflow-y-auto">
                 {locations.map((location, index) => (
                   <div
                     key={index}
@@ -222,22 +196,22 @@ const JobListings = () => {
             )}
           </div>
 
-          {/* Salary Ranges */}
+          {/* Companies */}
           <div className="border-t border-amber-900 py-4">
             <div
               className="flex justify-between items-center cursor-pointer mb-3"
-              onClick={() => toggleSection("salaryRanges")}
+              onClick={() => toggleSection("companies")}
             >
-              <h3 className="font-bold text-amber-900">Salary Range</h3>
-              {expandedSections.salaryRanges ? (
+              <h3 className="font-bold text-amber-900">Companies</h3>
+              {expandedSections.companies ? (
                 <ChevronDown className="h-5 w-5 text-amber-700" />
               ) : (
                 <ChevronRight className="h-5 w-5 text-amber-700" />
               )}
             </div>
-            {expandedSections.salaryRanges && (
-              <div className="space-y-2">
-                {salaryRanges.map((range, index) => (
+            {expandedSections.companies && (
+              <div className="space-y-2 max-h-60 overflow-y-auto">
+                {companies.map((company, index) => (
                   <div
                     key={index}
                     className="flex items-center justify-between"
@@ -246,18 +220,16 @@ const JobListings = () => {
                       <input
                         type="checkbox"
                         className="mr-2 h-4 w-4 accent-amber-600"
-                        checked={jobFilters.salaryRange === range.label}
+                        checked={jobFilters.company === company}
                         onChange={() =>
                           setJobFilters({
                             ...jobFilters,
-                            salaryRange:
-                              jobFilters.salaryRange === range.label
-                                ? ""
-                                : range.label,
+                            company:
+                              jobFilters.company === company ? "" : company,
                           })
                         }
                       />
-                      <span className="text-amber-900">{range.label}</span>
+                      <span className="text-amber-900">{company}</span>
                     </label>
                   </div>
                 ))}
@@ -324,15 +296,12 @@ const JobListings = () => {
                   <span className="px-2 py-1 text-xs rounded border bg-amber-100 text-amber-800 border-amber-300">
                     {job.Industry_Type}
                   </span>
-                  <span className="text-lg font-bold text-amber-700">
-                    {formatSalary(job.Salary)}
-                  </span>
                 </div>
 
                 <h3 className="text-xl font-bold mb-2">{job.Title}</h3>
                 <div className="flex items-center text-sm mb-3">
                   <Building className="h-4 w-4 mr-2 text-amber-700" />
-                  {/* <span className="font-medium">{job.employer_name}</span> */}
+                  {job.Company_Name}
                 </div>
 
                 <div className="grid gap-2 mb-4">
@@ -344,21 +313,11 @@ const JobListings = () => {
 
                 <div className="flex justify-between items-center">
                   <a
-                    href="#"
+                    href={job.Apply_Link}
                     className="flex items-center text-blue-500 hover:text-blue-600 font-medium"
                   >
                     <Briefcase className="h-4 w-4 mr-1" />
                     Apply Now
-                  </a>
-
-                  <a
-                    href={job.employer_website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-amber-700 hover:text-amber-900 text-sm font-medium"
-                  >
-                    <Globe className="h-4 w-4 mr-1" />
-                    Company Site
                   </a>
                 </div>
               </div>

@@ -41,7 +41,7 @@ const Institues = () => {
     };
     fetchData();
   }, []);
-  console.log(courses);
+
   // Institute data
   const institutes = [];
 

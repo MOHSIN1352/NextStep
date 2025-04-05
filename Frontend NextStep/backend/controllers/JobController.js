@@ -4,8 +4,6 @@ const City = require("../models/City");
 
 exports.getAllJobs = async (req, res) => {
   try {
-    console.log("Fetching jobs...");
-
     // Populate the city field with its name
     const jobs = await Job.find().populate("Location", "City_Name");
 
@@ -14,7 +12,6 @@ exports.getAllJobs = async (req, res) => {
     res.status(500).json({ message: "Error fetching jobs", error });
   }
 };
-
 
 // Get a single job by ID
 exports.getJobById = async (req, res) => {
@@ -43,7 +40,9 @@ exports.createJob = async (req, res) => {
 // Update an existing job
 exports.updateJob = async (req, res) => {
   try {
-    const updatedJob = await Job.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedJob = await Job.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     if (!updatedJob) {
       return res.status(404).json({ message: "Job not found" });
     }

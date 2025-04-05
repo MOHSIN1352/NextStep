@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -10,7 +10,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import Navbar from "./Navbar";
 import axios from "axios";
-
+import { UserContext } from "../Context/UserContext";
 const MapUpdater = ({ facilities }) => {
   const map = useMap();
   if (facilities.length > 0) {
@@ -20,11 +20,12 @@ const MapUpdater = ({ facilities }) => {
 };
 
 const HealthcareSearch = () => {
+  const { userData } = useContext(UserContext);
   const [category, setCategory] = useState("hospital");
   const [facilities, setFacilities] = useState([]);
   const [hospitalData, setHospitalData] = useState([]);
 
-  const location = "67d0023893b14064e2b2b6d0";
+  const location = userData.City || "";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,8 +55,7 @@ const HealthcareSearch = () => {
       setFacilities([]);
     }
   }, [category, hospitalData]);
-  console.log("hop", hospitalData);
-  console.log(facilities);
+
   return (
     <div className="bg-[#f6f6ef]">
       <Navbar />
@@ -99,7 +99,7 @@ const HealthcareSearch = () => {
           </div>
           <ul className="mt-4 text-lg">
             {facilities.map((facility) => (
-              <li key={facility.id} className="py-2 border-b border-gray-300">
+              <li key={facility._id} className="py-2 border-b border-gray-300">
                 {facility.Name}
               </li>
             ))}
