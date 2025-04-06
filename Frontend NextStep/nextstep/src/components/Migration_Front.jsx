@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   ChevronDown,
   ChevronRight,
@@ -12,8 +12,10 @@ import {
 } from "lucide-react";
 import Navbar from "./Navbar";
 import axios from "axios";
+import { UserContext } from "../Context/UserContext";
 
 const JobListings = () => {
+  const userData = useContext(UserContext);
   const [viewMode, setViewMode] = useState("list");
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -94,6 +96,22 @@ const JobListings = () => {
       Object.values(jobFilters).filter((value) => value !== "").length +
       (searchTerm ? 1 : 0)
     );
+  };
+
+  const handleSaving = async (Id, str) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/user/saveItems`,
+        {
+          userId: userData.userData.id,
+          itemId: Id,
+          itemType: "Job",
+        }
+      );
+      console.log("job saved successfully:", response.data);
+    } catch (error) {
+      console.log("Error saving policy:", error);
+    }
   };
 
   return (
@@ -251,15 +269,7 @@ const JobListings = () => {
               <span className="text-sm font-medium text-amber-800">
                 {filteredJobs.length} results
               </span>
-              <div className="flex items-center">
-                <span className="mr-2 text-sm text-amber-800">Sort by</span>
-                <select className="border border-amber-200 rounded p-1 text-sm bg-white text-amber-900">
-                  <option>Relevance</option>
-                  <option>Salary (High-Low)</option>
-                  <option>Salary (Low-High)</option>
-                  <option>Title (A-Z)</option>
-                </select>
-              </div>
+
               <div className="flex border border-amber-200 rounded bg-white">
                 <button
                   className={`p-1 ${
@@ -319,6 +329,12 @@ const JobListings = () => {
                     <Briefcase className="h-4 w-4 mr-1" />
                     Apply Now
                   </a>
+                  <button
+                    className="text-amber-700 hover:text-amber-900 text-sm font-medium"
+                    onClick={() => handleSaving(job._id, "Job")}
+                  >
+                    Save for Later
+                  </button>
                 </div>
               </div>
             ))}

@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import background from "../assets/background.png";
 import Navbar from "./Navbar";
-
+import { UserContext } from "../Context/UserContext";
 import DemoPage from "./Page2"; //Page 2
 import Demo from "./Page4"; //page 4
 import Pagemap from "./Page3"; //page3
 import Footer from "./Footer";
 
 function Home() {
+  const { isLoggedIn } = useContext(UserContext);
   return (
     <div className="overflow-hidden w-full">
       <div className="h-screen w-full overflow-hidden ">
@@ -25,7 +26,7 @@ function Home() {
                 Find opportunities & navigate your future
               </p>
               <a
-                href="/login"
+                href={isLoggedIn ? "/healthCareSearch" : "/login"}
                 className="bg-yellow-900 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
               >
                 Get Started
@@ -34,6 +35,7 @@ function Home() {
           </div>
         </div>
       </div>
+
       <DemoPage />
       <Pagemap />
       <Demo />

@@ -11,6 +11,7 @@ import GovernmentPolicies from "./components/GovernmentPolicies";
 import JobListings from "./components/Migration_Front";
 import ProfilePage from "./components/Profile";
 import Employers from "./components/Employers";
+import ForgotPassword from "./components/ForgotPassword";
 function App() {
   return (
     <Router>
@@ -26,6 +27,7 @@ function App() {
           <Route path="/employers" element={<Employers />} />
           <Route path="/institute" element={<Institutes />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
         </Routes>
       </div>
     </Router>

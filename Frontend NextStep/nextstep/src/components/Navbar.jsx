@@ -20,21 +20,58 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex space-x-10 font-sans">
-          <Link to="/governmentPolicies" className="hover:scale-105">
-            Government Scheme
-          </Link>
-          <Link to="/institute" className="hover:scale-105">
-            Education
-          </Link>
-          <Link to="/healthCareSearch" className="hover:scale-105">
-            Healthcare
-          </Link>
-          <Link to="/jobListings" className="hover:scale-105">
-            Jobs
-          </Link>
-          <Link to="/employers" className="hover:scale-105">
-            Employers
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <Link to="/governmentPolicies" className="hover:scale-105">
+                Government Scheme
+              </Link>
+              <Link to="/institute" className="hover:scale-105">
+                Education
+              </Link>
+              <Link to="/healthCareSearch" className="hover:scale-105">
+                Healthcare
+              </Link>
+              <Link to="/jobListings" className="hover:scale-105">
+                Jobs
+              </Link>
+              <Link to="/employers" className="hover:scale-105">
+                Employers
+              </Link>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={() => navigate("/login")}
+                className="hover:scale-105"
+              >
+                Government Scheme
+              </button>
+              <button
+                onClick={() => navigate("/login")}
+                className="hover:scale-105"
+              >
+                Education
+              </button>
+              <button
+                onClick={() => navigate("/login")}
+                className="hover:scale-105"
+              >
+                Healthcare
+              </button>
+              <button
+                onClick={() => navigate("/login")}
+                className="hover:scale-105"
+              >
+                Jobs
+              </button>
+              <button
+                onClick={() => navigate("/login")}
+                className="hover:scale-105"
+              >
+                Employers
+              </button>
+            </>
+          )}
         </div>
 
         <div className="flex items-center space-x-6">

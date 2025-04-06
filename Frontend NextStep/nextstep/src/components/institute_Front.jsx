@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ChevronDown, ChevronRight, Grid, List, Search } from "lucide-react";
 import Navbar from "./Navbar";
 import axios from "axios";
+import { UserContext } from "../Context/UserContext";
 
 const Institues = () => {
+  const userData = useContext(UserContext);
   const [view, setView] = useState("courses");
   const [viewMode, setViewMode] = useState("list");
   const [searchTerm, setSearchTerm] = useState("");
   const [courses, setcourses] = useState([]);
+  const [institutes, setinstitutes] = useState([]);
   const [courseFilters, setCourseFilters] = useState({
     category: "",
     platform: "",
@@ -34,16 +37,18 @@ const Institues = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/api/courses");
+        const institutesResponse = await axios.get(
+          "http://localhost:5000/api/institutes"
+        );
+        console.log("institutes", institutesResponse.data);
         setcourses(response.data);
+        setinstitutes(institutesResponse.data);
       } catch (err) {
         console.log("Error fetching data:", err);
       }
     };
     fetchData();
   }, []);
-
-  // Institute data
-  const institutes = [];
 
   // Get unique values for filters
   const categories = [...new Set(courses.map((course) => course.Category))];
@@ -182,7 +187,23 @@ const Institues = () => {
       );
     }
   };
-  console.log(filteredCourses);
+
+  const handleSaving = async (Id, str) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/user/saveItems`,
+        {
+          userId: userData.userData.id,
+          itemId: Id,
+          itemType: str == "Courses" ? "Course" : "Institute",
+        }
+      );
+      console.log("course/institute saved successfully:", response.data);
+    } catch (error) {
+      console.log("Error saving policy:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#f6f6ef]">
       <Navbar />
@@ -502,30 +523,6 @@ const Institues = () => {
                   </div>
                 )}
               </div>
-
-              {/* Accreditation */}
-              <div className="border-t border-amber-900 py-4">
-                <div className="mb-3">
-                  <h3 className="font-bold text-amber-900">Accreditation</h3>
-                  <select
-                    className="mt-2 w-full p-2 border border-amber-900 rounded bg-white text-amber-900"
-                    value={instituteFilters.accreditation}
-                    onChange={(e) =>
-                      setInstituteFilters({
-                        ...instituteFilters,
-                        accreditation: e.target.value,
-                      })
-                    }
-                  >
-                    <option value="">All Accreditations</option>
-                    {accreditations.map((accr, index) => (
-                      <option key={index} value={accr}>
-                        {accr}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
             </>
           )}
         </div>
@@ -615,19 +612,27 @@ const Institues = () => {
 
                       <div className="text-sm">Rating: {course.rating} ⭐</div>
                     </div>
-                    <a
-                      href={course.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:text-blue-600 font-medium"
-                    >
-                      View Course →
-                    </a>
+                    <div className="flex justify-between items-center">
+                      <a
+                        href={course.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:text-blue-600 font-medium"
+                      >
+                        View Course →
+                      </a>
+                      <button
+                        className="text-amber-700 hover:text-amber-900 text-sm font-medium"
+                        onClick={() => handleSaving(course._id, "Courses")}
+                      >
+                        Save for Later
+                      </button>
+                    </div>
                   </div>
                 ))
               : filteredInstitutes.map((institute) => (
                   <div
-                    key={institute.id}
+                    key={institute._id}
                     className="bg-[#f6f6ef] text-amber-900 drop-shadow-xl  border  rounded-lg p-6 hover:shadow-lg transition-shadow"
                   >
                     <div className="text-amber-700 font-medium mb-2">
@@ -635,7 +640,7 @@ const Institues = () => {
                       {institute.accreditation}
                     </div>
                     <h3 className="text-xl font-bold text-amber-900 mb-3">
-                      {institute.name}
+                      {institute.Name}
                     </h3>
                     <div className="text-amber-800 mb-4">
                       <div className="text-sm mb-2">{institute.address}</div>
@@ -653,14 +658,24 @@ const Institues = () => {
                         ))}
                       </div>
                     </div>
-                    <a
-                      href={institute.websiteLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:text-blue-600 font-medium"
-                    >
-                      Visit Website →
-                    </a>
+                    <div className="flex justify-between items-center">
+                      <a
+                        href={institute.websiteLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-500 hover:text-blue-600 font-medium"
+                      >
+                        Visit Website →
+                      </a>
+                      <button
+                        className="text-amber-700 hover:text-amber-900 text-sm font-medium"
+                        onClick={() =>
+                          handleSaving(institute._id, "institutes")
+                        }
+                      >
+                        Save for Later
+                      </button>
+                    </div>
                   </div>
                 ))}
           </div>

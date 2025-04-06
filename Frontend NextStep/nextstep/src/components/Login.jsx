@@ -20,6 +20,11 @@ const Login = () => {
       setError("Invalid login credentials");
     }
   };
+
+  const handleForgotPassword = () => {
+    navigate("/forgotPassword"); // Navigate to the Forgot Password page
+  };
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-[#f5f0e3]  relative overflow-hidden">
       {/* Branding */}
@@ -98,7 +103,10 @@ const Login = () => {
 
           {/* Forgot Password Button */}
           <div className="mt-4 text-center">
-            <button className="w-full py-3 bg-transparent text-[#B99875] font-semibold rounded-xl border border-[#B99875] shadow-md hover:bg-amber-900 hover:text-white transition duration-300">
+            <button
+              className="w-full py-3 bg-transparent text-[#B99875] font-semibold rounded-xl border border-[#B99875] shadow-md hover:bg-amber-900 hover:text-white transition duration-300"
+              onClick={handleForgotPassword}
+            >
               Forgot Password
             </button>
           </div>
