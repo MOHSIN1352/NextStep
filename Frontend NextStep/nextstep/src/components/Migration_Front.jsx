@@ -13,12 +13,15 @@ import {
 import Navbar from "./Navbar";
 import axios from "axios";
 import { UserContext } from "../Context/UserContext";
+import { motion } from "framer-motion";
+
 
 const JobListings = () => {
   const userData = useContext(UserContext);
   const [viewMode, setViewMode] = useState("list");
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBySalary, setSortBySalary] = useState(false);
   const [jobFilters, setJobFilters] = useState({
     industry: "",
     location: "",
@@ -70,6 +73,13 @@ const JobListings = () => {
       job.Title.toLowerCase().includes(searchTerm.toLowerCase());
 
     return industryMatch && locationMatch && companyMatch && searchMatch;
+  }) .sort((a, b) => {
+    if (!sortBySalary) return 0;
+
+    const salaryA = parseInt(a.Salary) || 0;
+    const salaryB = parseInt(b.Salary) || 0;
+
+    return salaryB - salaryA; // High to low
   });
 
   // Toggle section expansion
@@ -254,6 +264,24 @@ const JobListings = () => {
               </div>
             )}
           </div>
+
+          {/* Sort by Salary */}
+            <div className="border-t border-amber-900 py-4">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="font-bold text-amber-900">Sort by Salary</h3>
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="mr-2 h-4 w-4 accent-amber-600"
+                    checked={sortBySalary}
+                    onChange={() => setSortBySalary(!sortBySalary)}
+                  />
+                  <span className="text-amber-900 text-sm">
+                    {sortBySalary ? "High → Low" : "Default"}
+                  </span>
+                </label>
+              </div>
+            </div>
         </div>
 
         {/* Main Content */}
@@ -297,47 +325,58 @@ const JobListings = () => {
               viewMode === "grid" ? "grid grid-cols-2 gap-6" : "space-y-6"
             }
           >
-            {filteredJobs.map((job) => (
-              <div
-                key={job._id}
-                className="bg-[#f6f6ef] text-amber-900 drop-shadow-xl border rounded-lg p-6 hover:shadow-lg transition-shadow"
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <span className="px-2 py-1 text-xs rounded border bg-amber-100 text-amber-800 border-amber-300">
-                    {job.Industry_Type}
-                  </span>
-                </div>
+            {filteredJobs.map((job, index) => (
+  <motion.div
+    key={job._id}
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: index * 0.05 }}
+    whileHover={{ scale: 1.02 }}
+    className="bg-[#fff8f2] border border-amber-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 space-y-4"
+  >
+    <div className="flex justify-between items-center">
+      <span className="text-xs font-semibold px-3 py-1 bg-amber-100 border border-amber-300 text-amber-800 rounded-full">
+        {job.Industry_Type}
+      </span>
+    </div>
 
-                <h3 className="text-xl font-bold mb-2">{job.Title}</h3>
-                <div className="flex items-center text-sm mb-3">
-                  <Building className="h-4 w-4 mr-2 text-amber-700" />
-                  {job.Company_Name}
-                </div>
+    <h3 className="text-xl font-bold text-amber-900">{job.Title}</h3>
 
-                <div className="grid gap-2 mb-4">
-                  <div className="flex items-center text-sm">
-                    <MapPin className="h-4 w-4 mr-2 text-amber-700" />
-                    <span>{job.Location.City_Name}</span>
-                  </div>
-                </div>
+    <div className="flex items-center text-sm text-amber-800">
+      <Building className="h-4 w-4 mr-2 text-amber-700" />
+      {job.Company_Name}
+    </div>
 
-                <div className="flex justify-between items-center">
-                  <a
-                    href={job.Apply_Link}
-                    className="flex items-center text-blue-500 hover:text-blue-600 font-medium"
-                  >
-                    <Briefcase className="h-4 w-4 mr-1" />
-                    Apply Now
-                  </a>
-                  <button
-                    className="text-amber-700 hover:text-amber-900 text-sm font-medium"
-                    onClick={() => handleSaving(job._id, "Job")}
-                  >
-                    Save for Later
-                  </button>
-                </div>
-              </div>
-            ))}
+    <div className="flex items-center text-sm text-amber-800">
+      <MapPin className="h-4 w-4 mr-2 text-amber-700" />
+      {job.Location.City_Name}
+    </div>
+
+    <div className="flex items-center text-sm text-amber-800">
+      💸 <span className="ml-2">{job.Salary && job.Salary !== "0" ? job.Salary : "Not disclosed"}</span>
+    </div>
+
+
+    <div className="flex justify-between items-center pt-2 border-t border-dashed border-amber-200 mt-3">
+      <a
+        href={job.Apply_Link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center text-blue-600 hover:text-blue-700 font-medium"
+      >
+        <Briefcase className="h-4 w-4 mr-1" />
+        Apply Now
+      </a>
+
+      <button
+        onClick={() => handleSaving(job._id, "Job")}
+        className="text-sm text-amber-700 hover:text-amber-900 font-medium"
+      >
+        Save for Later
+      </button>
+    </div>
+  </motion.div>
+))}
           </div>
 
           {filteredJobs.length === 0 && (
@@ -358,3 +397,4 @@ const JobListings = () => {
 };
 
 export default JobListings;
+
