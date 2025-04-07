@@ -13,6 +13,9 @@ import {
 } from "lucide-react";
 import Navbar from "./Navbar";
 import axios from "axios";
+import { motion } from "framer-motion";
+
+
 
 const GovernmentPolicies = () => {
   const { userData, isLoggedIn } = useContext(UserContext);
@@ -164,8 +167,8 @@ const GovernmentPolicies = () => {
       {isLoggedIn && (
         <div className="flex w-full mx-auto">
           {/* Sidebar Filters */}
-          <div className="w-1/4 p-9 border-r border-t border-gray-500 bg-[#f6f6ef] drop-shadow-r-xl">
-            <div className="flex justify-between items-center mb-4">
+          <div className="w-1/4 p-6 border-r border-t border-gray-500 bg-[#fce3cd]/70 drop-shadow-r-xl overflow-y-auto max-h-[calc(100vh-64px)] sticky top-16">
+          <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold text-amber-900">Filters</h2>
               {getActiveFilterCount() > 0 && (
                 <button
@@ -357,72 +360,66 @@ const GovernmentPolicies = () => {
                 viewMode === "grid" ? "grid grid-cols-2 gap-6" : "space-y-6"
               }
             >
-              {filteredPolicies.map((policy) => {
-                return (
-                  <div
-                    key={policy.id}
-                    className="bg-[#f6f6ef] text-amber-900 drop-shadow-xl border rounded-lg p-6 hover:shadow-lg transition-shadow"
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="flex items-center gap-2">
-                        <span
-                          className={`px-2 py-1 text-xs rounded border ${getStatusColor(
-                            policy.Status
-                          )}`}
-                        >
-                          {policy.Status}
-                        </span>
-                        <span className="text-sm text-amber-700">
-                          {policy.Year}
-                        </span>
-                      </div>
-                      <span className={`text-sm font-medium text-red-600`}>
-                        {policy.Deadline}
-                      </span>
-                    </div>
+             
+{filteredPolicies.map((policy, index) => (
+  <motion.div
+    key={policy._id}
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: index * 0.05 }}
+    whileHover={{ scale: 1.02 }}
+    className="bg-[#fff8f2] border border-amber-200 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 space-y-4"
+  >
+    <div className="flex items-center justify-between mb-2">
+      <span
+        className={`px-2 py-1 text-xs rounded-full font-semibold border ${getStatusColor(
+          policy.Status
+        )}`}
+      >
+        {policy.Status}
+      </span>
+      <span className="text-xs text-amber-600">{policy.Year}</span>
+    </div>
 
-                    <h3 className="text-xl font-bold mb-3">{policy.Name}</h3>
+    <h2 className="text-xl font-bold text-amber-900">{policy.Name}</h2>
 
-                    <p className="text-sm text-amber-800 mb-4 line-clamp-3">
-                      {policy.Description}
-                    </p>
+    <p className="text-sm text-amber-800 line-clamp-3">{policy.Description}</p>
 
-                    <div className="grid gap-2 mb-4">
-                      <div className="flex items-center text-sm">
-                        <MapPin className="h-4 w-4 mr-2 text-amber-700" />
-                        <span>Region: {policy.Region.State_Name}</span>
-                      </div>
-                      <div className="flex items-center text-sm">
-                        <Building className="h-4 w-4 mr-2 text-amber-700" />
-                        <span>Department: {policy.Department}</span>
-                      </div>
-                      <div className="flex items-center text-sm">
-                        <Calendar className="h-4 w-4 mr-2 text-amber-700" />
-                        <span>Deadline: {formatDate(policy.Deadline)}</span>
-                      </div>
-                    </div>
+    <div className="space-y-2 text-sm text-amber-700">
+      <div className="flex items-center">
+        <MapPin className="w-4 h-4 mr-2 text-amber-700" />
+        Region: {policy.Region?.State_Name}
+      </div>
+      <div className="flex items-center">
+        <Building className="w-4 h-4 mr-2 text-amber-700" />
+        Department: {policy.Department}
+      </div>
+      <div className="flex items-center">
+        <Calendar className="w-4 h-4 mr-2 text-amber-700" />
+        Deadline: {formatDate(policy.Deadline)}
+      </div>
+    </div>
 
-                    <div className="flex justify-between items-center">
-                      <a
-                        href={policy.documentLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center text-blue-500 hover:text-blue-600 font-medium"
-                      >
-                        <FileText className="h-4 w-4 mr-1" />
-                        View Policy Document
-                      </a>
+    <div className="flex justify-between items-center pt-2 border-t border-dashed border-amber-200 mt-3">
+      <a
+        href={policy.documentLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm"
+      >
+        <FileText className="h-4 w-4 mr-1" />
+        View Document
+      </a>
 
-                      <button
-                        className="text-amber-700 hover:text-amber-900 text-sm font-medium"
-                        onClick={() => handleSaving(policy._id)}
-                      >
-                        Save for Later
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+      <button
+        onClick={() => handleSaving(policy._id)}
+        className="text-sm text-amber-700 hover:text-amber-900 font-medium"
+      >
+        Save for Later
+      </button>
+    </div>
+  </motion.div>
+))}
             </div>
 
             {filteredPolicies.length === 0 && (
