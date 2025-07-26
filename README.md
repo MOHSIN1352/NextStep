@@ -216,7 +216,8 @@ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_maps_key
 | GET    | `/api/institutes/:id/courses` | List courses by institute     |
 | GET    | `/api/hospitals`              | List hospitals                |
 
-*(Complete list in [docs/API.md](./docs/API.md))*
+*📄 [View Full Project Documentation](docs/Documentation.pdf)
+*
 
 ---
 
