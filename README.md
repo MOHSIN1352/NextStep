@@ -32,7 +32,6 @@ NextStep is a full-stack web application designed to help users explore, search,
 * **Hospital & Policy Finder**: Search hospitals and health insurance policies by location and type.
 * **Real-time Search Suggestions**: Live autocomplete for jobs, books (if integrated), and institutes.
 * **Responsive UI**: Works seamlessly across mobile, tablet, and desktop.
-* **Dark/Light Mode Support**: Toggle between themes.
 
 ---
 
