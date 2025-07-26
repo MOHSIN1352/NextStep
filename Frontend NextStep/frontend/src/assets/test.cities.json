@@ -1,0 +1,1378 @@
+[{
+  "_id": {
+    "$oid": "67d0023893b14064e2b2b6d0"
+  },
+  "City_ID": {
+    "$oid": "67d0023893b14064e2b2b6cf"
+  },
+  "City_Name": "Ahmedabad",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e357"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b14"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b13"
+  },
+  "City_Name": "Visakhapatnam",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b16"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b15"
+  },
+  "City_Name": "Vijayawada",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b18"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b17"
+  },
+  "City_Name": "Tirupati",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b1a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b19"
+  },
+  "City_Name": "Itanagar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b1c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b1b"
+  },
+  "City_Name": "Naharlagun",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b1e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b1d"
+  },
+  "City_Name": "Pasighat",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b20"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b1f"
+  },
+  "City_Name": "Guwahati",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b22"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b21"
+  },
+  "City_Name": "Dibrugarh",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b24"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b23"
+  },
+  "City_Name": "Silchar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e34f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b26"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b25"
+  },
+  "City_Name": "Patna",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e351"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b28"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b27"
+  },
+  "City_Name": "Gaya",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e351"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b2a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b29"
+  },
+  "City_Name": "Muzaffarpur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e351"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b2c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b2b"
+  },
+  "City_Name": "Raipur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e353"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b2e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b2d"
+  },
+  "City_Name": "Bilaspur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e353"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b30"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b2f"
+  },
+  "City_Name": "Durg",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e353"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b32"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b31"
+  },
+  "City_Name": "Panaji",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e355"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b34"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b33"
+  },
+  "City_Name": "Vasco da Gama",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e355"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b36"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b35"
+  },
+  "City_Name": "Margao",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e355"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b38"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b37"
+  },
+  "City_Name": "Surat",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e357"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b3a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b39"
+  },
+  "City_Name": "Vadodara",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e357"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b3c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b3b"
+  },
+  "City_Name": "Rajkot",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e357"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b3e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b3d"
+  },
+  "City_Name": "Faridabad",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e359"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b40"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b3f"
+  },
+  "City_Name": "Gurgaon",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e359"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b42"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b41"
+  },
+  "City_Name": "Panipat",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e359"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b44"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b43"
+  },
+  "City_Name": "Shimla",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b46"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b45"
+  },
+  "City_Name": "Manali",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b48"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b47"
+  },
+  "City_Name": "Dharamshala",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b4a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b49"
+  },
+  "City_Name": "Srinagar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e391"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b4c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b4b"
+  },
+  "City_Name": "Jammu",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e391"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b4e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b4d"
+  },
+  "City_Name": "Baramulla",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e391"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b50"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b4f"
+  },
+  "City_Name": "Ranchi",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b52"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b51"
+  },
+  "City_Name": "Jamshedpur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b54"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b53"
+  },
+  "City_Name": "Dhanbad",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b56"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b55"
+  },
+  "City_Name": "Bangalore",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b58"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b57"
+  },
+  "City_Name": "Mysore",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b5a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b59"
+  },
+  "City_Name": "Mangalore",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e35f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b5c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b5b"
+  },
+  "City_Name": "Trivandrum",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e361"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b5e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b5d"
+  },
+  "City_Name": "Kochi",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e361"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b60"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b5f"
+  },
+  "City_Name": "Kozhikode",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e361"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b62"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b61"
+  },
+  "City_Name": "Bhopal",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e363"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b64"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b63"
+  },
+  "City_Name": "Indore",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e363"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b66"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b65"
+  },
+  "City_Name": "Gwalior",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e363"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b68"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b67"
+  },
+  "City_Name": "Mumbai",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e365"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b6a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b69"
+  },
+  "City_Name": "Pune",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e365"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b6c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b6b"
+  },
+  "City_Name": "Nagpur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e365"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b6e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b6d"
+  },
+  "City_Name": "Chennai",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e377"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b70"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b6f"
+  },
+  "City_Name": "Coimbatore",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e377"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b72"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b71"
+  },
+  "City_Name": "Madurai",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e377"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b74"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b73"
+  },
+  "City_Name": "New Delhi",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b76"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b75"
+  },
+  "City_Name": "Dwarka",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b78"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b77"
+  },
+  "City_Name": "Karol Bagh",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b7a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b79"
+  },
+  "City_Name": "Imphal",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e367"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b7c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b7b"
+  },
+  "City_Name": "Bishnupur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e367"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b7e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b7d"
+  },
+  "City_Name": "Churachandpur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e367"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b80"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b7f"
+  },
+  "City_Name": "Shillong",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e369"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b82"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b81"
+  },
+  "City_Name": "Tura",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e369"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b84"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b83"
+  },
+  "City_Name": "Nongstoin",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e369"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b86"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b85"
+  },
+  "City_Name": "Aizawl",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b88"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b87"
+  },
+  "City_Name": "Lunglei",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b8a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b89"
+  },
+  "City_Name": "Champhai",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b8c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b8b"
+  },
+  "City_Name": "Kohima",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b8e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b8d"
+  },
+  "City_Name": "Dimapur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b90"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b8f"
+  },
+  "City_Name": "Mokokchung",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b92"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b91"
+  },
+  "City_Name": "Bhubaneswar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b94"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b93"
+  },
+  "City_Name": "Cuttack",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b96"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b95"
+  },
+  "City_Name": "Rourkela",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e36f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b98"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b97"
+  },
+  "City_Name": "Ludhiana",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e371"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b9a"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b99"
+  },
+  "City_Name": "Amritsar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e371"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b9c"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b9b"
+  },
+  "City_Name": "Jalandhar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e371"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178b9e"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b9d"
+  },
+  "City_Name": "Jaipur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e373"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178ba0"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178b9f"
+  },
+  "City_Name": "Jodhpur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e373"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178ba2"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178ba1"
+  },
+  "City_Name": "Udaipur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e373"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178ba4"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178ba3"
+  },
+  "City_Name": "Gangtok",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e375"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178ba6"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178ba5"
+  },
+  "City_Name": "Namchi",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e375"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178ba8"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178ba7"
+  },
+  "City_Name": "Mangan",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e375"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178baa"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178ba9"
+  },
+  "City_Name": "Hyderabad",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e379"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178bac"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178bab"
+  },
+  "City_Name": "Warangal",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e379"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178bae"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178bad"
+  },
+  "City_Name": "Nizamabad",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e379"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178bb0"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178baf"
+  },
+  "City_Name": "Agartala",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4822ceb109407b2178bb2"
+  },
+  "City_ID": {
+    "$oid": "67d4822ceb109407b2178bb1"
+  },
+  "City_Name": "Dharmanagar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37b"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d485712312e0aaad90dc62"
+  },
+  "City_ID": {
+    "$oid": "67d485712312e0aaad90dc61"
+  },
+  "City_Name": "Dehradun",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d485712312e0aaad90dc64"
+  },
+  "City_ID": {
+    "$oid": "67d485712312e0aaad90dc63"
+  },
+  "City_Name": "Haridwar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d485712312e0aaad90dc66"
+  },
+  "City_ID": {
+    "$oid": "67d485712312e0aaad90dc65"
+  },
+  "City_Name": "Rishikesh",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4868903e02743621d24b2"
+  },
+  "City_ID": {
+    "$oid": "67d4868903e02743621d24b1"
+  },
+  "City_Name": "Port Blair",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e383"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4868903e02743621d24b4"
+  },
+  "City_ID": {
+    "$oid": "67d4868903e02743621d24b3"
+  },
+  "City_Name": "Havelock Island",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e383"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4868903e02743621d24b6"
+  },
+  "City_ID": {
+    "$oid": "67d4868903e02743621d24b5"
+  },
+  "City_Name": "Car Nicobar",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e383"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d486cb14444a92e52bf78e"
+  },
+  "City_ID": {
+    "$oid": "67d486cb14444a92e52bf78d"
+  },
+  "City_Name": "Lucknow",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d486cb14444a92e52bf790"
+  },
+  "City_ID": {
+    "$oid": "67d486cb14444a92e52bf78f"
+  },
+  "City_Name": "Kanpur",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d486cb14444a92e52bf792"
+  },
+  "City_ID": {
+    "$oid": "67d486cb14444a92e52bf791"
+  },
+  "City_Name": "Varanasi",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e37d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d48757ff5682ce9ffb4ead"
+  },
+  "City_ID": {
+    "$oid": "67d48757ff5682ce9ffb4eac"
+  },
+  "City_Name": "Chandigarh",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e385"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d487892b1f3779622193a0"
+  },
+  "City_ID": {
+    "$oid": "67d487892b1f37796221939f"
+  },
+  "City_Name": "Leh",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d487892b1f3779622193a2"
+  },
+  "City_ID": {
+    "$oid": "67d487892b1f3779622193a1"
+  },
+  "City_Name": "Kargil",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d487892b1f3779622193a4"
+  },
+  "City_ID": {
+    "$oid": "67d487892b1f3779622193a3"
+  },
+  "City_Name": "Dras",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38f"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d487df4a74f5f286ca9318"
+  },
+  "City_ID": {
+    "$oid": "67d487df4a74f5f286ca9317"
+  },
+  "City_Name": "Kolkata",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e381"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d487df4a74f5f286ca931a"
+  },
+  "City_ID": {
+    "$oid": "67d487df4a74f5f286ca9319"
+  },
+  "City_Name": "Asansol",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e381"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d487df4a74f5f286ca931c"
+  },
+  "City_ID": {
+    "$oid": "67d487df4a74f5f286ca931b"
+  },
+  "City_Name": "Siliguri",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e381"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4881e79b63170a5bdc1a2"
+  },
+  "City_ID": {
+    "$oid": "67d4881e79b63170a5bdc1a1"
+  },
+  "City_Name": "Puducherry",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4881e79b63170a5bdc1a4"
+  },
+  "City_ID": {
+    "$oid": "67d4881e79b63170a5bdc1a3"
+  },
+  "City_Name": "Karaikal",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4881e79b63170a5bdc1a6"
+  },
+  "City_ID": {
+    "$oid": "67d4881e79b63170a5bdc1a5"
+  },
+  "City_Name": "Mahe",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e38d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d488428586bc23a782eab5"
+  },
+  "City_ID": {
+    "$oid": "67d488428586bc23a782eab4"
+  },
+  "City_Name": "Kavaratti",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e389"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d488428586bc23a782eab7"
+  },
+  "City_ID": {
+    "$oid": "67d488428586bc23a782eab6"
+  },
+  "City_Name": "Agatti",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e389"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d488428586bc23a782eab9"
+  },
+  "City_ID": {
+    "$oid": "67d488428586bc23a782eab8"
+  },
+  "City_Name": "Minicoy",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e389"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d48881e0fa19fec72bdf1d"
+  },
+  "City_ID": {
+    "$oid": "67d48881e0fa19fec72bdf1c"
+  },
+  "City_Name": "Daman",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e387"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d48881e0fa19fec72bdf1f"
+  },
+  "City_ID": {
+    "$oid": "67d48881e0fa19fec72bdf1e"
+  },
+  "City_Name": "Diu",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e387"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d48881e0fa19fec72bdf21"
+  },
+  "City_ID": {
+    "$oid": "67d48881e0fa19fec72bdf20"
+  },
+  "City_Name": "Silvassa",
+  "State_ID": {
+    "$oid": "67cffe734df4cc218981e387"
+  },
+  "__v": 0
+}]
